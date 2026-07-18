@@ -11,7 +11,9 @@ odin run odin_port/examples/ch1-01-hello.odin -file
 Because every file declares `package main`, the directory cannot be built as a
 package — always use `-file`, matching how Cargo treats `examples/` as
 individual binaries. The ports are verified against `odin version
-dev-2026-07`.
+dev-2026-07` on both arm64 (macOS, Apple M1 Max) and x86_64, at default
+and `-o:speed` optimization levels — every example and all four test
+packages.
 
 [`odin_port/src`](odin_port/src) mirrors the book's library code in
 [`src`](src): each chapter directory is a standalone Odin package (no
