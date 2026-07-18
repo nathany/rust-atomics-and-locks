@@ -45,5 +45,14 @@ atomic_min          :: proc(dst: ^$T, val: T) -> T ---
 atomic_min_explicit :: proc(dst: ^$T, val: T, order: Atomic_Memory_Order) -> T ---
 ```
 
+## Affected area
+
+Each atomic intrinsic is a `BuiltinProc_` entry validated in
+`src/check_builtin.cpp` and lowered in `src/llvm_backend_proc.cpp`, where
+the existing RMW cases map to `LLVMAtomicRMWBinOpAdd` etc. Max/min would
+add cases mapping to `LLVMAtomicRMWBinOpMax`/`Min`/`UMax`/`UMin` (picking
+signed vs. unsigned from the operand type), plus the stub declarations in
+`base/intrinsics/intrinsics.odin`.
+
 Encountered with `odin version dev-2026-07:819fdc7a8` while porting the
 statistics example from *Rust Atomics and Locks* (ch. 2).

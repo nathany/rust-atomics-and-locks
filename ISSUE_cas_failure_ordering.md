@@ -37,9 +37,11 @@ it makes porting C++17/Rust code needlessly lossy.
 ## Suggested change
 
 In `src/check_builtin.cpp` (the `invalid_combination` tables under the
-`atomic_compare_exchange` builtins, around line 6400), drop the
+`atomic_compare_exchange` builtins, around line 6470), drop the
 failure-vs-success comparison and reject only what LLVM rejects:
-failure orderings of `.Release` or `.Acq_Rel`.
+failure orderings of `.Release` or `.Acq_Rel`. The backend already passes
+both orderings through to LLVM's `cmpxchg` unchanged, so no other change
+is needed.
 
 ## References
 
