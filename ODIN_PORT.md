@@ -35,9 +35,13 @@ Library-port conventions:
   chapter's final version gets the clean name (`Spin_Lock`).
 - `#[test]` functions become `@(test)` procs in a `*_test.odin` file.
 
-Two gaps found while porting are written up as draft upstream issues (not
-yet posted): [ISSUE_cas_failure_ordering.md](ISSUE_cas_failure_ordering.md)
-and [ISSUE_atomic_max_min.md](ISSUE_atomic_max_min.md).
+Two gaps found while porting have been reported upstream:
+[odin-lang/Odin#7080](https://github.com/odin-lang/Odin/issues/7080)
+(compare-exchange failure-ordering rule, write-up in
+[ISSUE_cas_failure_ordering.md](ISSUE_cas_failure_ordering.md)) and
+[odin-lang/Odin#7079](https://github.com/odin-lang/Odin/issues/7079)
+(atomic max/min intrinsics, write-up in
+[ISSUE_atomic_max_min.md](ISSUE_atomic_max_min.md)).
 
 ## General mappings
 
