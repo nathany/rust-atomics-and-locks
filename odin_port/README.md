@@ -1,12 +1,15 @@
 # Odin port
 
-Odin ports of the book's Rust examples, mirroring the folder structure and
-filenames of [`../examples`](../examples) (with `.odin` instead of `.rs`).
+Odin ports of the book's Rust code, mirroring the folder structure and
+filenames of [`../examples`](../examples) and [`../src`](../src) (with
+`.odin` instead of `.rs`).
 
-Each file is a standalone program. Run one with:
+Each file in `examples/` is a standalone program; each chapter directory in
+`src/` is a standalone package:
 
 ```sh
 odin run examples/ch1-01-hello.odin -file
+odin test src/ch4_spin_lock
 ```
 
 Where Rust relies on a type that has no Odin equivalent (`Rc`, `Cell`,
