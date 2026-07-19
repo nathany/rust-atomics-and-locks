@@ -43,7 +43,24 @@ Two gaps found while porting have been reported upstream:
 [ISSUE_cas_failure_ordering.md](ISSUE_cas_failure_ordering.md)) and
 [odin-lang/Odin#7079](https://github.com/odin-lang/Odin/issues/7079)
 (atomic max/min intrinsics, write-up in
-[ISSUE_atomic_max_min.md](ISSUE_atomic_max_min.md)).
+[ISSUE_atomic_max_min.md](ISSUE_atomic_max_min.md)). Both issue write-ups
+carry implementation notes with file paths and line numbers into the Odin
+compiler (checked against master `2c25fb924`).
+
+Each gap also has an **aspirational variant** example that uses the ideal
+API the fix would enable. These deliberately **do not compile** on stock
+Odin today — they are the acceptance test for the upstream fixes, and swap
+in for their workaround counterparts once the fixes land:
+
+| Variant (fails today) | Workaround in use | Needs |
+|---|---|---|
+| `examples/ch2-07-statistics-atomic-max.odin` (uses `atomic_max_explicit`) | `examples/ch2-07-statistics.odin` (CAS loop) | #7079 |
+| `examples/ch3-09-lazy-init-box-release-cas.odin` (`.Release`/`.Acquire` CAS) | `examples/ch3-09-lazy-init-box.odin` (`.Acq_Rel` success) | #7080 |
+
+Exclude `*-atomic-max.odin` and `*-release-cas.odin` from any build sweep
+until the corresponding issue is fixed. Verified failure modes today:
+`atomic_max_explicit` → "is not declared by 'intrinsics'"; the `.Release`/
+`.Acquire` pairing → "Illegal memory order pairing".
 
 ## General mappings
 
